@@ -1,0 +1,34 @@
+name: tdd_clean_arch_learning
+description: A new Flutter project.
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  # Service locator
+  get_it: ^3.1.0
+  # Bloc for state management
+  flutter_bloc: ^3.0.0
+  # Value equality
+  equatable: ^2.0.3
+  # Functional programming thingies
+  dartz: ^0.10.1
+  # Remote API
+  data_connection_checker: ^0.3.4
+  http: ^0.13.4
+  # Local cache
+  shared_preferences: ^0.5.6
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  mocktail: ^0.2.0
+
+flutter:
+  uses-material-design: true
