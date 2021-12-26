@@ -17,6 +17,8 @@ dependencies:
   flutter_bloc: ^3.0.0
   # Value equality
   equatable: ^2.0.3
+
+  # TODO: An alternative to using dartz only for the Either class would be the either_dart package.
   # Functional programming thingies
   dartz: ^0.10.1
   # Remote API
