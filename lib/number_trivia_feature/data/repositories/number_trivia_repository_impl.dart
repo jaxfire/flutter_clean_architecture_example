@@ -8,7 +8,7 @@ import 'package:tdd_clean_arch_learning/number_trivia_feature/data/models/number
 import 'package:tdd_clean_arch_learning/number_trivia_feature/domain/entities/number_trivia_entity.dart';
 import 'package:tdd_clean_arch_learning/number_trivia_feature/domain/repositories/number_trivia_repository.dart';
 
-typedef _ConcreteOrRandomCall = Future<NumberTriviaModel> Function();
+// typedef _ConcreteOrRandomCall = Future<NumberTriviaModel> Function();
 
 class NumberTriviaRepositoryImpl implements NumberTriviaRepository {
   NumberTriviaLocalDataSource localDataSource;
@@ -38,7 +38,7 @@ class NumberTriviaRepositoryImpl implements NumberTriviaRepository {
   }
 
   Future<Either<Failure, NumberTriviaEntity>> _getTrivia(
-    _ConcreteOrRandomCall getTriviaCall,
+    Future<NumberTriviaModel> Function() getTriviaCall,
   ) async {
     if (await networkInfo.isConnected()) {
       try {
