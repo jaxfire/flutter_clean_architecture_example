@@ -11,12 +11,12 @@ class MockHttpClient extends Mock implements http.Client {}
 
 class FallbackValueUri extends Fake implements Uri {}
 
-late NumberTriviaRemoteDataSourceImpl remoteDataSource;
-late MockHttpClient mockHttpClient;
+late NumberTriviaRemoteDataSourceImpl _remoteDataSource;
+late MockHttpClient _mockHttpClient;
 
 void _setupHttpClientResponse({required bool successful}) {
   when(
-    () => mockHttpClient.get(
+    () => _mockHttpClient.get(
       any(),
       headers: any(named: 'headers'),
     ),
@@ -34,8 +34,9 @@ void main() {
   });
 
   setUp(() {
-    mockHttpClient = MockHttpClient();
-    remoteDataSource = NumberTriviaRemoteDataSourceImpl(client: mockHttpClient);
+    _mockHttpClient = MockHttpClient();
+    _remoteDataSource =
+        NumberTriviaRemoteDataSourceImpl(client: _mockHttpClient);
   });
 
   group(
@@ -52,10 +53,10 @@ void main() {
           // Stub so that the mock does not return null.
           _setupHttpClientResponse(successful: true);
           // ACT
-          remoteDataSource.getConcreteNumberTrivia(tNumber);
+          _remoteDataSource.getConcreteNumberTrivia(tNumber);
           // ASSERT
           verify(
-            () => mockHttpClient.get(
+            () => _mockHttpClient.get(
               Uri.parse('http://numbersapi.com/$tNumber'),
               headers: {'Content-Type': 'application/json'},
             ),
@@ -71,7 +72,7 @@ void main() {
           _setupHttpClientResponse(successful: true);
           // ACT
           final result =
-              await remoteDataSource.getConcreteNumberTrivia(tNumber);
+              await _remoteDataSource.getConcreteNumberTrivia(tNumber);
 
           // ASSERT
           expect(
@@ -88,7 +89,7 @@ void main() {
           _setupHttpClientResponse(successful: false);
           // ACT and ASSERT
           expect(
-            () => remoteDataSource.getConcreteNumberTrivia(tNumber),
+            () => _remoteDataSource.getConcreteNumberTrivia(tNumber),
             throwsA(
               isA<ServerException>(),
             ),
@@ -111,10 +112,10 @@ void main() {
           // Stub so that the mock does not return null.
           _setupHttpClientResponse(successful: true);
           // ACT
-          remoteDataSource.getRandomNumberTrivia();
+          _remoteDataSource.getRandomNumberTrivia();
           // ASSERT
           verify(
-            () => mockHttpClient.get(
+            () => _mockHttpClient.get(
               Uri.parse('http://numbersapi.com/random'),
               headers: {'Content-Type': 'application/json'},
             ),
@@ -129,7 +130,7 @@ void main() {
           // ARRANGE
           _setupHttpClientResponse(successful: true);
           // ACT
-          final result = await remoteDataSource.getRandomNumberTrivia();
+          final result = await _remoteDataSource.getRandomNumberTrivia();
 
           // ASSERT
           expect(
@@ -146,7 +147,7 @@ void main() {
           _setupHttpClientResponse(successful: false);
           // ACT and ASSERT
           expect(
-            () => remoteDataSource.getRandomNumberTrivia(),
+            () => _remoteDataSource.getRandomNumberTrivia(),
             throwsA(
               isA<ServerException>(),
             ),
