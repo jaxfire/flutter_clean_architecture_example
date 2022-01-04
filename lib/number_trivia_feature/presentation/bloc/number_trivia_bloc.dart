@@ -21,11 +21,14 @@ class NumberTriviaBloc extends Bloc<NumberTriviaEvent, NumberTriviaState> {
   final GetRandomNumberTriviaUseCase _getRandomNumberTriviaUseCase;
   final TypeConverter _typeConverter;
 
-  NumberTriviaBloc(
-    this._getConcreteNumberTriviaUseCase,
-    this._getRandomNumberTriviaUseCase,
-    this._typeConverter,
-  ) : super(Empty()) {
+  NumberTriviaBloc({
+    getConcreteNumberTriviaUseCase,
+    getRandomNumberTriviaUseCase,
+    typeConverter,
+  })  : _getConcreteNumberTriviaUseCase = getConcreteNumberTriviaUseCase,
+        _getRandomNumberTriviaUseCase = getRandomNumberTriviaUseCase,
+        _typeConverter = typeConverter,
+        super(Empty()) {
     on<GetConcreteNumberTriviaEvent>(_onGetConcreteNumberTrivia);
     on<GetRandomNumberTriviaEvent>(_onGetRandomNumberTrivia);
   }
