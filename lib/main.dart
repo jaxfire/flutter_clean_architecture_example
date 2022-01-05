@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
+import 'package:tdd_clean_arch_learning/number_trivia_feature/presentation/pages/number_trivia_page.dart';
 
 import 'injection_container.dart';
 
 void main() async {
-  await initDependencies();
+  WidgetsFlutterBinding.ensureInitialized();
+  initDependencies();
+  await GetIt.instance.allReady();
   runApp(const MyApp());
 }
 
@@ -13,27 +17,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Number Trivia',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primaryColor: Colors.green.shade800,
+        accentColor: Colors.green.shade600,
       ),
-      home: const MyHomePage(),
-    );
-  }
-}
-
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('awesome audiobook app'),
-      ),
-      body: Center(
-        child: Text('I\'m an app!'),
-      ),
+      home: const NumberTriviaPage(),
     );
   }
 }

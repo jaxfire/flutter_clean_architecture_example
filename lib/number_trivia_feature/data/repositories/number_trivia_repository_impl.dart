@@ -24,7 +24,7 @@ class NumberTriviaRepositoryImpl implements NumberTriviaRepository {
     int number,
   ) async {
     return await _getTrivia(
-      () async => await remoteDataSource.getConcreteNumberTrivia(number),
+      () async => remoteDataSource.getConcreteNumberTrivia(number),
     );
   }
 

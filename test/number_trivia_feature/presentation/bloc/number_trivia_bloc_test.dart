@@ -30,9 +30,9 @@ void main() {
     _mockTypeConverter = MockTypeConverter();
 
     _bloc = NumberTriviaBloc(
-      _mockGetConcreteNumberTriviaUseCase,
-      _mockGetRandomNumberTriviaUseCase,
-      _mockTypeConverter,
+      getConcreteNumberTriviaUseCase: _mockGetConcreteNumberTriviaUseCase,
+      getRandomNumberTriviaUseCase: _mockGetRandomNumberTriviaUseCase,
+      typeConverter: _mockTypeConverter,
     );
   });
 

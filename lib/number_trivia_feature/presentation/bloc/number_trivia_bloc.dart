@@ -36,11 +36,11 @@ class NumberTriviaBloc extends Bloc<NumberTriviaEvent, NumberTriviaState> {
   void _onGetConcreteNumberTrivia(
     GetConcreteNumberTriviaEvent event,
     Emitter<NumberTriviaState> emit,
-  ) {
+  ) async {
     emit(Loading());
     Either<Failure, int> converterNumber =
         _typeConverter.toUnsignedInteger(event.number);
-    converterNumber.fold(
+    await converterNumber.fold(
       (failure) {
         emit(Error(message: INVALID_INPUT_FAILURE_MESSAGE));
       },
